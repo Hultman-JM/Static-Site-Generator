@@ -26,7 +26,12 @@ def run(
     server_address = ("", port)
     httpd = server_class(server_address, handler_class)
     print(f"Serving HTTP on http://localhost:{port} from directory '{directory}'...")
-    httpd.serve_forever()
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("Server stopped by user")
+        # Perform any necessary cleanup here
+
 
 
 if __name__ == "__main__":
